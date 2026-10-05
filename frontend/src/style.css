@@ -133,6 +133,16 @@ h1 {
   background: #fde8e6;
   box-shadow: 0 0 0 2px rgba(192,57,43,0.35);
 }
+.hs-desk.hs-blocked {
+  background: repeating-linear-gradient(45deg, #6b6258, #6b6258 6px, #4a443d 6px, #4a443d 12px);
+  border-color: #3a342d; color: #f5f0e6; cursor: pointer;
+}
+.hs-desk .hs-reason {
+  font-size: 0.56rem; line-height: 1.1; margin-top: 1px; padding: 0 2px;
+}
+.text-bad { color: var(--hs-bad); }
+.text-warn { color: var(--hs-paper-b); }
+.text-muted { color: var(--hs-muted); }
 .hs-desk .hs-paper-tag {
   position: absolute; top: 2px; right: 3px;
   font-size: 0.58rem; font-weight: 800;

@@ -1,5 +1,5 @@
 from datetime import datetime
-from sqlalchemy import DateTime, ForeignKey, Integer, String, Text
+from sqlalchemy import Boolean, DateTime, ForeignKey, Integer, JSON, String, Text
 from sqlalchemy.orm import Mapped, mapped_column
 from app.database import Base
 
@@ -11,6 +11,9 @@ class Hall(Base):
     rows: Mapped[int] = mapped_column(Integer)
     cols: Mapped[int] = mapped_column(Integer)
     min_manhattan: Mapped[int] = mapped_column(Integer, default=2)
+    # 损坏禁坐：开关关闭时 blocked_seats 一律视为普通格。
+    blocked_enabled: Mapped[bool] = mapped_column(Boolean, default=False)
+    blocked_seats: Mapped[list] = mapped_column(JSON, default=list)
 
 class PaperSet(Base):
     __tablename__ = "paper_sets"
