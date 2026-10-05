@@ -140,6 +140,10 @@ h1 {
 }
 .hs-desk .hs-paper-tag.a { background: var(--hs-paper-a); }
 .hs-desk .hs-paper-tag.b { background: var(--hs-paper-b); }
+.hs-desk .hs-blocked {
+  font-size: 0.56rem; font-weight: 800; color: var(--hs-bad);
+  background: rgba(192,57,43,0.12); padding: 0 3px; border-radius: 2px;
+}
 
 .card {
   background: var(--hs-clip);

@@ -1,5 +1,5 @@
 from datetime import datetime
-from sqlalchemy import DateTime, ForeignKey, Integer, String, Text
+from sqlalchemy import Boolean, DateTime, ForeignKey, Integer, String, Text
 from sqlalchemy.orm import Mapped, mapped_column
 from app.database import Base
 
@@ -11,6 +11,9 @@ class Hall(Base):
     rows: Mapped[int] = mapped_column(Integer)
     cols: Mapped[int] = mapped_column(Integer)
     min_manhattan: Mapped[int] = mapped_column(Integer, default=2)
+    blocked_enabled: Mapped[bool] = mapped_column(Boolean, default=False)
+    # JSON list of [row, col] 0-based
+    blocked_seats: Mapped[str] = mapped_column(Text, default="[]")
 
 class PaperSet(Base):
     __tablename__ = "paper_sets"
@@ -32,3 +35,5 @@ class SeatPlan(Base):
     hall_id: Mapped[int] = mapped_column(ForeignKey("halls.id"))
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
     result_json: Mapped[str] = mapped_column(Text, default="{}")
+    # 配置指纹：rows/cols/min_dist/blocked/考生套卷任一变化即不匹配，触发重算。
+    config_sig: Mapped[str] = mapped_column(String(64), default="")
